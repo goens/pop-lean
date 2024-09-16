@@ -77,13 +77,13 @@ def ArchType.getInstArch : ArchType → Pop.Arch
   | .CompoundXCTSO => CompoundXCTSO.instArch
 
 def ArchType.getInstLitmusSyntax : (arch : ArchType) → @Pop.LitmusSyntax arch.getInstArch
-  | .PTX => PTX.Litmus.instLitmusSyntaxInstArch
-  | .TSO => x86.Litmus.instLitmusSyntaxInstArch
-  | .XC => XC.Litmus.instLitmusSyntaxInstArch
-  | .SC => SC.Litmus.instLitmusSyntaxInstArch
-  | .ARM => ARM.Litmus.instLitmusSyntaxInstArch
-  | .Compound => Compound.Litmus.instLitmusSyntaxInstArch
-  | .CompoundXCTSO => CompoundXCTSO.Litmus.instLitmusSyntaxInstArch
+  | .PTX => PTX.Litmus.instLitmusSyntax
+  | .TSO => x86.Litmus.instLitmusSyntax
+  | .XC => XC.Litmus.instLitmusSyntax
+  | .SC => SC.Litmus.instLitmusSyntax
+  | .ARM => ARM.Litmus.instLitmusSyntax
+  | .Compound => Compound.Litmus.instLitmusSyntax
+  | .CompoundXCTSO => CompoundXCTSO.Litmus.instLitmusSyntax
 
 def x86Imported := x86.Litmus.allTests.map Compound.importTSOLitmus
 def ptxImported := PTX.Litmus.allTests.map Compound.importPTXLitmus

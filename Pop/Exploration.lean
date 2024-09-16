@@ -335,7 +335,7 @@ match inittuple with
             if let transition::rest := guide then
               unless unexplored[0]!.fst.isEmpty do
                 let (first,last) := unexplored.split
-                  λ (pt,_,_)t => pt.last' == some transition
+                  λ (pt,_,_)t => pt.getLast? == some transition
                 let firstSorted := first.qsort λ (pt,_,_)t (pt',_,_)t => Nat.ble pt'.length pt.length -- longest first!
                 unexplored := firstSorted ++ last
                 if !firstSorted.isEmpty then -- don't consume transition unless actually found something

@@ -96,7 +96,7 @@ def interactiveExecutionSingle : Litmus.Test → List  Nat → IO.FS.Stream → 
       if let .error msg := exceptTransMsg  then
         return .error msg
       else if let .ok m := exceptTransMsg then
-        let msg := formatInteractiveState name programState systemState (highlightTransition := partialTrace.last')
+        let msg := formatInteractiveState name programState systemState (highlightTransition := partialTrace.getLast?)
           ++ s!"Current trace:\n{partialTraceNums}\n"
           ++ "--------------------------------------\n"
           ++ "Possible transitions:\n" ++ "0: Undo (last transition)\n" ++ m
@@ -198,7 +198,7 @@ def replayTrace : Litmus.Test → List Transition → IO.FS.Stream → IO Unit
         match behind with
           | [] => continue
           | beh =>
-            ahead := beh.last'.get!::ahead
+            ahead := beh.getLast?.get!::ahead
             behind := beh.reverse.tail.reverse
       if input == "f" then
         match ahead with

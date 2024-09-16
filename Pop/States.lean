@@ -2,14 +2,14 @@
 -- See Copyright Notice in LICENSE
 
 import Pop.Util
-open Util Std.HashMap
+open Util
 
 namespace Pop
 
 def RequestId := Nat deriving ToString, BEq, Inhabited, Hashable
 def Value := Option Nat deriving ToString, BEq, Inhabited
 def Address := Nat deriving ToString, BEq, Inhabited
-def ThreadId := Nat deriving Ord, LT, LE, ToString, Inhabited, Hashable, DecidableEq
+def ThreadId := Nat deriving Ord, LT, LE, ToString, Inhabited, Hashable, DecidableEq, BEq
 inductive ConditionalValue
   | const : Nat → ConditionalValue
   | tentative : Nat → ConditionalValue
@@ -45,7 +45,6 @@ instance : OfNat Address n where ofNat := Address.ofNat n
 instance : OfNat Value n where ofNat := Value.ofNat n
 instance : Coe RequestId Nat where coe := RequestId.toNat
 
-instance : BEq ThreadId := @instBEq ThreadId instThreadIdDecidableEq
 instance : Lean.Quote ThreadId where quote := λ n => Lean.quote (ThreadId.toNat n)
 instance : ToString ConditionalValue where toString
   | .const n => s!"{n}"
@@ -53,7 +52,7 @@ instance : ToString ConditionalValue where toString
   | .fetchAndAdd => s!"(n+1)"
   | .failed => "FAILED"
 
-instance : LawfulBEq ThreadId := inferInstance
+instance : LawfulBEq ThreadId := inferInstanceAs (LawfulBEq Nat)
 instance : LawfulBEq (List ThreadId) := inferInstance
 
 def Address.prettyPrint (addr : Address) : String :=
@@ -400,13 +399,13 @@ def Request.makePredecessorAt (req : Request) (thId : ThreadId) : Request :=
  also r₁ →s' r₂. Can we use this to find a more compact representation?
 -/
 structure OrderConstraints {V : ValidScopes} where
-  val : Std.HashMap (List ThreadId) (Std.HashMap (RequestId × RequestId) Bool)
+  val : Lean.HashMap (List ThreadId) (Lean.HashMap (RequestId × RequestId) Bool)
   default : Bool
 
 def OrderConstraints.empty {V : ValidScopes} (numReqs : optParam Nat 10) : @OrderConstraints V :=
  let scopes := V.scopes.toList
  { default := false, val :=
- Std.mkHashMap (capacity := scopes.length) |> scopes.foldl λ acc s => acc.insert s (Std.mkHashMap (capacity := numReqs))
+ Lean.mkHashMap (capacity := scopes.length) |> scopes.foldl λ acc s => acc.insert s (Lean.mkHashMap (capacity := numReqs))
  }
 
 -- TODO: make scope an optional parameter and just do the intersection by default?

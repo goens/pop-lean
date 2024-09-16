@@ -2,16 +2,14 @@
 -- See Copyright Notice in LICENSE
 
 import Lean
-import Std
-open Std.HashMap
 namespace Util
 
 theorem n_minus_one_le_n {n : Nat} : n > 0 → n - 1 < n := by
   cases n with
   | zero => simp []
   | succ n =>
-    intros
-    rw [Nat.succ_eq_add_one, Nat.add_sub_cancel]
+    intro _
+    rw [Nat.add_sub_cancel]
     apply Nat.le.refl
 
 def filterNones {α : Type} : List (Option α) → List α
@@ -251,15 +249,15 @@ instance {α β γ : Type} [Inhabited α] [Inhabited β] [Inhabited γ] : Inhabi
 --   | (leaf l₁), (parentNil l₂) => parentCons (leaf l₁) (parentNil l₂) h
 --   | (leaf l₁), (leaf l₂) => parentCons (leaf l₁) (parentNil l₂) h
 --   | (leaf l₁), parentCons (children : ListTree α child) (siblings : ListTree α l₂) sub =>
---     let hchild := List.sublist_trans sub 
--- 
+--     let hchild := List.sublist_trans sub
+--
 --   parentCons (joinSub sub (leaf l₁) children) siblings sub
-  
+
 
 -- def ListTree.mkAux [BEq α] {l₁ l₂ : List α} : List (List α) → ListTree α l₁ → ListTree α l₂
 --   --| lists, subtree => subtree
 --   sorry
--- 
+--
 -- def ListTree.mk [BEq α] {l : List α} : List (List α) → ListTree α l
 --   | lists =>
 --     let sorted := lists.toArray.qsort List.sublist
@@ -309,11 +307,10 @@ def _root_.List.revlookup [BEq β] : β → List (α × β) → Option α
     | false => revlookup a es
 
 structure ScopedBinaryRelation (α β : Type 0) [Hashable α] [BEq α] [Hashable β] [BEq β] where
-  val : Std.HashMap (α × β × β) Bool
+  val : Lean.HashMap (α × β × β) Bool
   defaultRes : Bool
-
 variable {α β : Type} [Hashable α] [BEq α] [Hashable β] [BEq β]
-def ScopedBinaryRelation.default : ScopedBinaryRelation α β := ScopedBinaryRelation.mk (Std.mkHashMap) false
+def ScopedBinaryRelation.default : ScopedBinaryRelation α β := ScopedBinaryRelation.mk (Lean.mkHashMap) false
 
 instance : Inhabited (ScopedBinaryRelation α β) where default := ScopedBinaryRelation.default
 

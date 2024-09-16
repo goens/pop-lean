@@ -1,0 +1,17 @@
+name = "lost-pop-lean"
+defaultTargets = ["pop"]
+
+[[lean_lib]]
+name = "Pop"
+
+[[lean_lib]]
+name = "Litmus"
+
+[[lean_exe]]
+name = "pop"
+root = "Main"
+
+[[require]]
+name = "Cli"
+scope = "leanprover"
+version = "git#main"

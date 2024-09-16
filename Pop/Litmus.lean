@@ -7,7 +7,6 @@ import Pop.States
 import Lean
 import Pop.Util
 
-open Std.HashMap
 open Util
 
 namespace Litmus
@@ -404,7 +403,7 @@ def createLitmus (list : List (List RequestSyntax))
   let variablesRaw := list.map λ thread => thread.map (λ r => if r.varName.length == 0 then none else some r.varName)
   let variables := removeDuplicates $ filterNones $ List.join variablesRaw
   let variableNums := variables.zip (List.range variables.length)
-  let variableMap := Std.mkHashMap (capacity := variableNums.length) |> variableNums.foldl λ acc (k, v) => acc.insert k v
+  let variableMap := Lean.mkHashMap (capacity := variableNums.length) |> variableNums.foldl λ acc (k, v) => acc.insert k v
   let replaceVar := λ r => match variableMap.find? r.varName with
     | some varName => (r.reqKind, r.reqType, varName ,r.value)
     | none => (r.reqKind, r.reqType, 0 ,r.value)
@@ -535,8 +534,8 @@ partial def mkSysAux (mapping : String → Option ThreadId) (desc : TSyntax `sys
     | `(system_desc| { $ts:threads }.$ty) => return (← mkCTA mapping ts, [(threadsGetAllNames ts |>.toList, ty.getId.toString)])
     | `(system_desc| { $[$sds:system_desc],* }) => do
       let (sdsTrees, names) := (← sds.mapM $ mkSysAux mapping).toList.unzip
-      let join := blesort $ setJoin $ sdsTrees.map (@ListTree.listType ThreadId instBEqThreadId)
-      return (← @ListTree.mkParent ThreadId instBEqThreadId join sdsTrees, names.join)
+      let join := blesort $ setJoin $ sdsTrees.map (@ListTree.listType ThreadId _)
+      return (← @ListTree.mkParent ThreadId _ join sdsTrees, names.join)
     | _ => Except.error "unexpected syntax in system description"
 
 def mkSys (desc : TSyntax `system_desc) : Except String (ValidScopes × (List $ List ThreadId × String)) :=
