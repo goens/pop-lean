@@ -56,6 +56,7 @@ def ArchType.available : List ArchType := [ArchType.PTX, ArchType.TSO, ArchType.
 
 def parseArchitectureString : String → Except String ArchType
   | "PTX" => .ok ArchType.PTX
+  | "PTX_MCA" => .ok ArchType.PTX_MCA
   | "TSO" => .ok ArchType.TSO
   | "ARM" => .ok ArchType.ARM
   | "XC" => .ok ArchType.XC
