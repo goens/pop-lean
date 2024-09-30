@@ -76,8 +76,8 @@ def reqBlockingSemantics (req : Req) : BlockingSemantics :=
     | .rlx => []
     | .weak => []
     | .rel => [.Read2WritePred, .Write2Write]
-    | .acq => [.Read2ReadNoPred, .Read2WriteNoPred]
-    | .acqrel => [.Read2WritePred, .Write2Write, .Read2ReadNoPred]
+    | .acq => [.Read2ReadPred, .Read2WritePred]
+    | .acqrel => [.Read2WritePred, .Write2Write, .Read2ReadPred]
     | .sc => [.Read2WritePred, .Write2Write, .Read2ReadPred, .Write2Read]
     | .dep => [.Read2ReadNoPred, .Read2WriteNoPred]
 
@@ -107,7 +107,7 @@ def toAlloy : String → BasicRequest → String
         | .rel => moduleName ++ s!"/{pref}FenceRel"
         | .acq => moduleName ++ s!"/{pref}FenceAcq"
         | _ => moduleName ++ s!"/UnknownFence"
-def alloyName := "ptx"
+def alloyName := "ptx_mca"
 
 def getThreadScope (valid : ValidScopes) (thread : ThreadId) (scope : Scope) :=
   let containing := valid.containThread thread
