@@ -204,7 +204,7 @@ syntax &"Satisfy " &"Request " num " with " &"Request " num : transition
 syntax "[" transition,+ "]" : guide_trace
 syntax metadata_item (litmus_metadata)? : litmus_metadata
 
-syntax "{|" request_set "|}" ("where" "sys" ":=" system_desc )? (litmus_metadata)? : litmus_def
+syntax request_set ("where" "sys" ":=" system_desc )? ("expect" litmus_metadata)? : litmus_def
 syntax "`[litmus|" litmus_def ident "]" : term
 syntax "`[sys|" system_desc "]" : term
 syntax "`[req|" request "]" : term
@@ -494,7 +494,7 @@ macro_rules
 
 -- TODO: is there a more elegant way to do this with `Option.map`?
 macro_rules
-  | `(`[litmus|  {| $r |} $[where sys := $opdesc:system_desc ]? $[$opmeta:litmus_metadata]? $name:ident ]) => do
+  | `(`[litmus|  $r:request_set  $[where sys := $opdesc:system_desc ]? $[expect $opmeta:litmus_metadata]? $name:ident ]) => do
     let desc ← match opdesc with
     | none => `( Option.none)
     | some desc => `( (some `[sys| $desc]))
