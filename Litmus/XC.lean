@@ -12,7 +12,7 @@ deflitmus MP_sys := {| W x=1; W y=1 ||  R y // 1; R x // 0|} ✓
 
 deflitmus MP_sys_F := {| W x=1; Fence; W y=1 ||  R y //1; Fence; R x // 0 |} 𐄂
 
-deflitmus MP_cta_F := {| W x=1; Fence. cta_sc; W y=1 ||  R y // 1; Fence. cta_sc; R x // 0|}
+deflitmus MP_cta_F := {| W x=1; Fence.cta_sc; W y=1 ||  R y // 1; Fence.cta_sc; R x // 0|}
   where sys := { {T0}, {T1} } ✓
 
 deflitmus SB_sys := {| W x=1; R y //0 || W y=1; R x // 0 |}  ✓

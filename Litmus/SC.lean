@@ -17,7 +17,7 @@ deflitmus WRC := {| W x=1 || R x // 1; W y = 1 || R y // 1 ;dep R x // 0|} 𐄂
 
 deflitmus MP3 := {| W x=1;  W y=1 || R y // 1; W z = 1 || R z // 1 ; R x // 0|} 𐄂
 
-deflitmus simpleRF := {| W. cta_rlx x=1 || R. cta_rlx x // 1 |} ✓
+deflitmus simpleRF := {| W.cta_rlx x=1 || R.cta_rlx x // 1 |} ✓
 
 deflitmus two_plus_two2 := {| W x=1; W y=2;  R y // 1 || W y=1; W x=2 ;  R x // 1|} 𐄂
 

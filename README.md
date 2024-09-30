@@ -119,14 +119,14 @@ requests:
 
  T0                      || T1                      |
 ----------------------------------------------------
- 4[W x 1]                || 2[R. cta_acq y]         |
+ 4[W x 1]                || 2[R.cta_acq y]         |
  5[W y 1]                || 3[R x]                  |
 
 removed: []
 satisfied: []
-constraints (scope [1]) : {0[W x 0]} → {1[W y 0], 4[W x 1], 5[W y 1], 3[R x]};   {1[W y 0]} → {4[W x 1], 5[W y 1], 2[R. cta_acq y]};   {4[W x 1]} → {5[W y 1]};   {2[R. cta_acq y]} → {3[R x]}
-constraints (scope [0]) : {0[W x 0]} → {1[W y 0], 4[W x 1], 5[W y 1], 3[R x]};   {1[W y 0]} → {4[W x 1], 5[W y 1], 2[R. cta_acq y]};   {4[W x 1]} → {5[W y 1]}
-constraints (scope [0, 1]) : {0[W x 0]} → {1[W y 0], 4[W x 1], 5[W y 1], 3[R x]};   {1[W y 0]} → {4[W x 1], 5[W y 1], 2[R. cta_acq y]};   {4[W x 1]} → {5[W y 1]}
+constraints (scope [1]) : {0[W x 0]} → {1[W y 0], 4[W x 1], 5[W y 1], 3[R x]};   {1[W y 0]} → {4[W x 1], 5[W y 1], 2[R.cta_acq y]};   {4[W x 1]} → {5[W y 1]};   {2[R.cta_acq y]} → {3[R x]}
+constraints (scope [0]) : {0[W x 0]} → {1[W y 0], 4[W x 1], 5[W y 1], 3[R x]};   {1[W y 0]} → {4[W x 1], 5[W y 1], 2[R.cta_acq y]};   {4[W x 1]} → {5[W y 1]}
+constraints (scope [0, 1]) : {0[W x 0]} → {1[W y 0], 4[W x 1], 5[W y 1], 3[R x]};   {1[W y 0]} → {4[W x 1], 5[W y 1], 2[R.cta_acq y]};   {4[W x 1]} → {5[W y 1]}
 --------------------------------------
 Current trace:
 [1, 1, 1, 1]
@@ -142,7 +142,7 @@ If the litmus test has a trace hint, as is the case here, the options in the tra
 =========================
 =======  SUMMARY  =======
 =========================
-hint for MP_writes_tso_ptx_acq_cta := [Accept (R. cta_acq y) at Thread 1, Accept (R x) at Thread 1, Accept (W x 1) at Thread 0, Accept (W y 1) at Thread 0, Propagate Request 3 to Thread 0, Satisfy Request 3 with Request 0, Propagate Request 4 to Thread 1, Propagate Request 5 to Thread 1, Propagate Request 2 to Thread 0, Satisfy Request 2 with Request 5]
+hint for MP_writes_tso_ptx_acq_cta := [Accept (R.cta_acq y) at Thread 1, Accept (R x) at Thread 1, Accept (W x 1) at Thread 0, Accept (W y 1) at Thread 0, Propagate Request 3 to Thread 0, Satisfy Request 3 with Request 0, Propagate Request 4 to Thread 1, Propagate Request 5 to Thread 1, Propagate Request 2 to Thread 0, Satisfy Request 2 with Request 5]
   Outcome: y = 1; x = 0
   Expected: y = 1; x = 0 (✓)
 ```
