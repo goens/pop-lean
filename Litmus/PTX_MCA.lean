@@ -1,9 +1,9 @@
 -- Author(s): Andrés Goens
 -- See Copyright Notice in LICENSE
 
-import Pop.Arch.PTX
-import Litmus.PTXTraces
-namespace PTX
+import Pop.Arch.PTX_MCA
+import Litmus.PTX_MCATraces
+namespace PTX_MCA
 namespace Litmus
 
 deflitmus IRIW := {| W x=1 ||  R x // 1 ; R y // 0 || R y // 1; R x // 0 || W y=1 |} ✓
@@ -189,4 +189,4 @@ def tests_3 := allTests.filter λ lit => lit.numThreads == 3
 def tests_4 := allTests.filter λ lit => lit.numThreads == 4
 
 end Litmus
-end PTX
+end PTX_MCA

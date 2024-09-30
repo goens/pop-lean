@@ -2,6 +2,7 @@
 -- See Copyright Notice in LICENSE
 
 import Pop.Arch.PTX
+import Pop.Arch.PTX_MCA
 import Pop.Arch.TSO
 import Pop.Arch.ARM
 import Pop.Arch.XC
@@ -10,6 +11,7 @@ import Pop.Arch.Compound
 import Pop.Arch.CompoundXCTSO
 import Pop.Util
 import Litmus.PTX
+import Litmus.PTX_MCA
 import Litmus.TSO
 import Litmus.ARM
 import Litmus.XC
@@ -19,6 +21,7 @@ import Litmus.CompoundXCTSO
 
 inductive ArchType
   | PTX
+  | PTX_MCA
   | TSO
   | ARM
   | XC
@@ -29,6 +32,7 @@ inductive ArchType
 
 instance : ToString ArchType where toString := λ a => match a with
   | .PTX => "PTX"
+  | .PTX_MCA => "PTX_MCA"
   | .TSO => "TSO"
   | .ARM => "ARM"
   | .XC => "XC"
@@ -69,6 +73,7 @@ def selectArchitecture : IO.FS.Stream → IO (Option ArchType)
 
 def ArchType.getInstArch : ArchType → Pop.Arch
   | .PTX => PTX.instArch
+  | .PTX_MCA => PTX_MCA.instArch
   | .TSO => x86.instArch
   | .ARM => ARM.instArch
   | .XC => XC.instArch
@@ -78,6 +83,7 @@ def ArchType.getInstArch : ArchType → Pop.Arch
 
 def ArchType.getInstLitmusSyntax : (arch : ArchType) → @Pop.LitmusSyntax arch.getInstArch
   | .PTX => PTX.Litmus.instLitmusSyntax
+  | .PTX_MCA => PTX_MCA.Litmus.instLitmusSyntax
   | .TSO => x86.Litmus.instLitmusSyntax
   | .XC => XC.Litmus.instLitmusSyntax
   | .SC => SC.Litmus.instLitmusSyntax
@@ -91,6 +97,7 @@ def xcImported := XC.Litmus.allTests.map CompoundXCTSO.importXCLitmus
 
 def ArchType.getLitmusTests : (arch : ArchType) → List (@Litmus.Test arch.getInstArch)
   | .PTX => PTX.Litmus.allTests
+  | .PTX_MCA => PTX_MCA.Litmus.allTests
   | .TSO => x86.Litmus.allTests
   | .ARM => ARM.Litmus.allTests
   | .XC => XC.Litmus.allTests

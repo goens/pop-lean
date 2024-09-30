@@ -7,7 +7,7 @@ import Pop.Util
 
 open Pop Util
 
-namespace PTX
+namespace PTX_MCA
 
 inductive Scope
   | cta
@@ -82,11 +82,11 @@ def reqBlockingSemantics (req : Req) : BlockingSemantics :=
     | .dep => [.Read2ReadNoPred, .Read2WriteNoPred]
 
 instance : ArchReq where
-  type := PTX.Req
-  instBEq := PTX.instBEqReq
-  instInhabited := PTX.instInhabitedReq
+  type := PTX_MCA.Req
+  instBEq := PTX_MCA.instBEqReq
+  instInhabited := PTX_MCA.instInhabitedReq
   isPermanentRead := λ _ => false
-  instToString := PTX.instToStringReq
+  instToString := PTX_MCA.instToStringReq
 
 def toAlloy : String → BasicRequest → String
     | moduleName, .read _ ty =>
@@ -139,50 +139,50 @@ def scopeInclusive (V : ValidScopes) (r₁ r₂ : Request) : Bool :=
 def morallyStrong (V : ValidScopes) (r₁ r₂ : Request) : Bool :=
   r₁.basic_type.type.isStrong && r₂.basic_type.type.isStrong && scopeInclusive V r₁ r₂
 
-end PTX
+end PTX_MCA
 
 namespace Pop
-private def Request.sem (req : Request) : PTX.Semantics :=
+private def Request.sem (req : Request) : PTX_MCA.Semantics :=
   req.basic_type.type.sem
 
-private def Request.markedScope (req : Request) : PTX.Scope :=
+private def Request.markedScope (req : Request) : PTX_MCA.Scope :=
   req.basic_type.type.scope
 
 -- some shortcuts
 private def Request.isFenceSC (req : Request) : Bool :=
-  req.isFence && req.basic_type.type.sem == PTX.Semantics.sc
+  req.isFence && req.basic_type.type.sem == PTX_MCA.Semantics.sc
 
 private def Request.isFenceAcqRel (req : Request) : Bool :=
-  req.isFence && req.basic_type.type.sem == PTX.Semantics.acqrel
+  req.isFence && req.basic_type.type.sem == PTX_MCA.Semantics.acqrel
 
 private def Request.isRel (req : Request) : Bool :=
-  req.basic_type.type.sem == PTX.Semantics.rel
+  req.basic_type.type.sem == PTX_MCA.Semantics.rel
 
 private def Request.isDep (req : Request) : Bool :=
-  req.isFence && req.basic_type.type.sem == PTX.Semantics.dep
+  req.isFence && req.basic_type.type.sem == PTX_MCA.Semantics.dep
 
 private def Request.isGeqRel (req : Request) : Bool :=
-  req.basic_type.type.sem == PTX.Semantics.rel ||
-  req.basic_type.type.sem == PTX.Semantics.acqrel ||
-  req.basic_type.type.sem == PTX.Semantics.sc
+  req.basic_type.type.sem == PTX_MCA.Semantics.rel ||
+  req.basic_type.type.sem == PTX_MCA.Semantics.acqrel ||
+  req.basic_type.type.sem == PTX_MCA.Semantics.sc
 
 private def Request.isAcq (req : Request) : Bool :=
-  req.basic_type.type.sem == PTX.Semantics.acq
+  req.basic_type.type.sem == PTX_MCA.Semantics.acq
 
 private def Request.isGeqAcq (req : Request) : Bool :=
-  req.basic_type.type.sem == PTX.Semantics.acq ||
-  req.basic_type.type.sem == PTX.Semantics.acqrel ||
-  req.basic_type.type.sem == PTX.Semantics.sc
+  req.basic_type.type.sem == PTX_MCA.Semantics.acq ||
+  req.basic_type.type.sem == PTX_MCA.Semantics.acqrel ||
+  req.basic_type.type.sem == PTX_MCA.Semantics.sc
 
 private def Request.isPTXFenceLike (req : Request) : Bool :=
-  req.basic_type.type.sem == PTX.Semantics.rel ||
-  req.basic_type.type.sem == PTX.Semantics.acq ||
-  req.basic_type.type.sem == PTX.Semantics.acqrel ||
-  req.basic_type.type.sem == PTX.Semantics.sc
+  req.basic_type.type.sem == PTX_MCA.Semantics.rel ||
+  req.basic_type.type.sem == PTX_MCA.Semantics.acq ||
+  req.basic_type.type.sem == PTX_MCA.Semantics.acqrel ||
+  req.basic_type.type.sem == PTX_MCA.Semantics.sc
 
 end Pop
 
-namespace PTX
+namespace PTX_MCA
 
 /-
   SC fence only considers its scope for order constraints.
@@ -194,8 +194,8 @@ namespace PTX
 -/
 def scopeIntersection : (V : ValidScopes) → Request → Request → @Pop.Scope V
   | V, r_old, r_new => Id.run do
-    let old_scope := PTX.requestScope V r_old
-    let new_scope := PTX.requestScope V r_new
+    let old_scope := PTX_MCA.requestScope V r_old
+    let new_scope := PTX_MCA.requestScope V r_new
     let intersection := V.intersection old_scope new_scope
     if r_new.isGeqRel then
       return new_scope
@@ -341,4 +341,4 @@ instance : LitmusSyntax where
   toAlloy := toAlloy
 
 end Litmus
-end PTX
+end PTX_MCA
