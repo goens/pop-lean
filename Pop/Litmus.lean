@@ -181,11 +181,11 @@ declare_syntax_cat transition (behavior := both)
 
 syntax "R" ident ("//" num)? : request
 syntax "RMW" ident ("//" num)? : request
-syntax "R." ident ident  ("//" num)? : request
+syntax ident ident  ("//" num)? : request
 syntax "W" ident "=" num : request
-syntax "W." ident ident "=" num : request
+syntax ident ident "=" num : request
 syntax "Fence"   : request
-syntax "Fence." ident  : request
+syntax ident   : request
 syntax request ";" request_seq : request_seq
 syntax request ";dep" request_seq : request_seq
 syntax request : request_seq
@@ -204,7 +204,7 @@ syntax &"Satisfy " &"Request " num " with " &"Request " num : transition
 syntax "[" transition,+ "]" : guide_trace
 syntax metadata_item (litmus_metadata)? : litmus_metadata
 
-syntax "{|" request_set "|}" ("where" "sys" ":=" system_desc )? (litmus_metadata)? : litmus_def
+syntax request_set ("where" "sys" ":=" system_desc )? ("expect" litmus_metadata)? : litmus_def
 syntax "`[litmus|" litmus_def ident "]" : term
 syntax "`[sys|" system_desc "]" : term
 syntax "`[req|" request "]" : term
@@ -433,22 +433,30 @@ macro_rules
 
 -- syntax sepBy(request_seq,  "||") : request_set
 -- TODO: should not require Compat!
-
 macro_rules
  | `(request| R $x:ident $[// $v]?) =>
  `(RequestSyntax.mk "R" ""  $(Lean.quote x.getId.toString)  $(Lean.quote $ v.map λ s => s.getNat))
- | `(request| R. $t:ident $x:ident $[// $v]?) =>
- `(RequestSyntax.mk "R" $(Lean.quote t.getId.toString) $(Lean.quote x.getId.toString) $(Lean.quote $ v.map λ s => s.getNat))
  | `(request| RMW $x:ident $[// $v]?) =>
  `(RequestSyntax.mk "RMW" ""  $(Lean.quote x.getId.toString)  $(Lean.quote $ v.map λ s => s.getNat))
  | `(request| W $x:ident = $y:num) =>
  `(RequestSyntax.mk "W" "" $(Lean.quote x.getId.toString) (some $y))
- | `(request| W. $t:ident $x:ident = $y:num) =>
- `(RequestSyntax.mk "W" $(Lean.quote t.getId.toString) $(Lean.quote x.getId.toString) (some $y))
  | `(request| Fence     ) =>
  `(RequestSyntax.mk "Fence" "" "" none)
- | `(request| Fence. $t    ) =>
- `(RequestSyntax.mk "Fence" $(Lean.quote t.getId.toString) "" none)
+ | `(request| $op:ident $x:ident = $y:num) =>
+   match op.getId with
+    | .str (.str .anonymous "W") t =>
+       `(RequestSyntax.mk "W" $(Lean.quote t) $(Lean.quote x.getId.toString) (some $y))
+    | _ => `(RequestSyntax.mk "SyntaxError" "SyntaxError" "SyntaxError" none)
+ | `(request| $op:ident $x:ident $[// $v]?) =>
+   match op.getId with
+    | .str (.str .anonymous "R") t =>
+      `(RequestSyntax.mk "R" $(Lean.quote t) $(Lean.quote x.getId.toString) $(Lean.quote $ v.map λ s => s.getNat))
+    | _ => `(RequestSyntax.mk "SyntaxError" "SyntaxError" "SyntaxError" none)
+  | `(request| $op:ident ) =>
+    match op.getId with
+     | .str (.str .anonymous "Fence") t =>
+       `(RequestSyntax.mk "Fence" $(Lean.quote t) "" none)
+     | _ => `(RequestSyntax.mk "SyntaxError" "SyntaxError" "SyntaxError" none)
 
 macro_rules
   | `(request_seq| $r:request ) => do `([ `[req| $r] ])
@@ -486,7 +494,7 @@ macro_rules
 
 -- TODO: is there a more elegant way to do this with `Option.map`?
 macro_rules
-  | `(`[litmus|  {| $r |} $[where sys := $opdesc:system_desc ]? $[$opmeta:litmus_metadata]? $name:ident ]) => do
+  | `(`[litmus|  $r:request_set  $[where sys := $opdesc:system_desc ]? $[expect $opmeta:litmus_metadata]? $name:ident ]) => do
     let desc ← match opdesc with
     | none => `( Option.none)
     | some desc => `( (some `[sys| $desc]))
