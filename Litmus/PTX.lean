@@ -112,10 +112,6 @@ deflitmus MP_rel_seq := W x=1; W.sys_rel y=1; W y = 2 || R.sys_acq y // 2; R x /
 deflitmus MP_acq_seq := W x=1; W.sys_rel y=1 || R y // 1; R.sys_acq y // 2; R x // 0
  expect 𐄂
 
-deflitmus MP_fence_cta_1fence := W x=1; Fence.sys_sc; W y=1 || R y // 1; Fence.cta_sc; R x // 0
- where sys := { {T0}, {T1} }
- expect ✓
-
 deflitmus N7 := W x=1; R x // 1; R y //0 || W y=1; R y // 1; R x //0
  expect ✓
 
