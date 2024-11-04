@@ -249,6 +249,167 @@ def rwc_tests(output):
   make_tests(output, tb_combos, variants, fence_variants, make_rwc_test)
 
 # -------------------------------------------------------------------------
+# WRC
+# -------------------------------------------------------------------------
+
+def wrc_mem_orders(scope, variant):
+  mem_orders = {
+    "t1_load": f"{scope}_rlx",
+    "t1_store": f"{scope}_rlx",
+    "t2_load": f"{scope}_rlx"
+  }
+
+  ## T1 load
+  if variant in ["ACQUIRE", "THREAD_2_FENCE_ACQ"]:
+    mem_orders["t1_load"] = f"{scope}_acq"
+
+  ## T1 store
+  if variant in ["RELEASE", "THREAD_2_FENCE_REL"]:
+    mem_orders["t1_store"] = f"{scope}_rel"
+  
+  ## T2 load
+  if variant in ["ACQUIRE", "RELEASE", "THREAD_1_FENCE"]:
+    mem_orders["t2_load"] = f"{scope}_acq"
+  
+  return mem_orders
+
+def wrc_fences(f_scope, variant):
+  fences = {
+    "t1_fence": "",
+    "t2_fence": ""
+  }
+
+  ## T1 fence
+  if variant in ["BOTH_FENCE", "THREAD_1_FENCE"]:
+    fences["t1_fence"] = f"Fence.{f_scope}_acqrel;"
+  
+  ## T2 fence
+  if variant in ["BOTH_FENCE", "THREAD_2_FENCE_ACQ", "THREAD_2_FENCE_REL"]:
+    fences["t2_fence"] = f"Fence.{f_scope}_acqrel;"
+
+  return fences
+
+def make_wrc_test(full_name, scope, f_scope, variant):
+  mem_orders = wrc_mem_orders(scope, variant)
+  fences = wrc_fences(f_scope, variant)
+  return f"deflitmus wrc_TB_{full_name} := W.{scope}_rlx x=1 || R.{mem_orders["t1_load"]} x // 1; {fences["t1_fence"]} W.{mem_orders["t1_store"]} y=1 || R.{mem_orders["t2_load"]} y // 1; {fences["t2_fence"]} R.{scope}_rlx x // 0"
+
+def wrc_tests(output):
+  tb_combos = make_combinations(three_threads)
+  variants = ["RELAXED", "ACQUIRE", "RELEASE"]
+  fence_variants = ["BOTH_FENCE", "THREAD_1_FENCE", "THREAD_2_FENCE_ACQ", "THREAD_2_FENCE_REL"]
+  make_tests(output, tb_combos, variants, fence_variants, make_wrc_test)
+
+# -------------------------------------------------------------------------
+# WRW + 2W
+# -------------------------------------------------------------------------
+
+def wrw_2w_mem_orders(scope, variant):
+  mem_orders = {
+    "t1_load": f"{scope}_rlx",
+    "t1_store": f"{scope}_rlx",
+    "t2_store": f"{scope}_rlx"
+  }
+
+  ## T1 load
+  if variant in ["ACQUIRE", "THREAD_2_FENCE_ACQ"]:
+    mem_orders["t1_load"] = f"{scope}_acq"
+
+  ## T1 store
+  if variant in ["RELEASE", "THREAD_2_FENCE_REL"]:
+    mem_orders["t1_store"] = f"{scope}_rel"
+  
+  ## T2 store
+  if variant in ["ACQUIRE", "RELEASE", "THREAD_1_FENCE"]:
+    mem_orders["t2_store"] = f"{scope}_rel"
+  
+  return mem_orders
+
+def wrw_2w_fences(f_scope, variant):
+  fences = {
+    "t1_fence": "",
+    "t2_fence": ""
+  }
+
+  ## T1 fence
+  if variant in ["BOTH_FENCE", "THREAD_1_FENCE"]:
+    fences["t1_fence"] = f"Fence.{f_scope}_acqrel;"
+  
+  ## T2 fence
+  if variant in ["BOTH_FENCE", "THREAD_2_FENCE_ACQ", "THREAD_2_FENCE_REL"]:
+    fences["t2_fence"] = f"Fence.{f_scope}_acqrel;"
+
+  return fences
+
+def make_wrw_2w_test(full_name, scope, f_scope, variant):
+  mem_orders = wrw_2w_mem_orders(scope, variant)
+  fences = wrw_2w_fences(f_scope, variant)
+  return f"deflitmus wrw_2w_TB_{full_name} := W.{scope}_rlx x=2 || R.{mem_orders["t1_load"]} x // 2; {fences["t1_fence"]} W.{mem_orders["t1_store"]} y=1 || W.{scope}_rlx y=2; {fences["t2_fence"]} W.{mem_orders["t2_store"]} x=1"
+
+def wrw_2w_tests(output):
+  tb_combos = make_combinations(three_threads)
+  variants = ["RELAXED", "ACQUIRE", "RELEASE"]
+  fence_variants = ["BOTH_FENCE", "THREAD_1_FENCE", "THREAD_2_FENCE_ACQ", "THREAD_2_FENCE_REL"]
+  make_tests(output, tb_combos, variants, fence_variants, make_wrw_2w_test)
+
+# -------------------------------------------------------------------------
+# WWC
+# -------------------------------------------------------------------------
+
+def wwc_mem_orders(scope, variant):
+  mem_orders = {
+    "t1_load": f"{scope}_rlx",
+    "t1_store": f"{scope}_rlx",
+    "t2_load": f"{scope}_rlx",
+    "t2_store": f"{scope}_rlx"
+  }
+
+  ## T1 load
+  if variant in ["ACQ_REL", "ACQ_ACQ", "THREAD_2_FENCE_ACQ"]:
+    mem_orders["t1_load"] = f"{scope}_acq"
+
+  ## T1 store
+  if variant in ["REL_ACQ", "REL_REL", "THREAD_2_FENCE_REL"]:
+    mem_orders["t1_store"] = f"{scope}_rel"
+  
+  ## T2 load
+  if variant in ["ACQ_ACQ", "REL_ACQ", "THREAD_1_FENCE_ACQ"]:
+    mem_orders["t2_load"] = f"{scope}_acq"
+
+   ## T2 store
+  if variant in ["ACQ_REL", "REL_REL", "THREAD_1_FENCE_REL"]:
+    mem_orders["t2_store"] = f"{scope}_rel"
+ 
+  return mem_orders
+
+def wwc_fences(f_scope, variant):
+  fences = {
+    "t1_fence": "",
+    "t2_fence": ""
+  }
+
+  ## T1 fence
+  if variant in ["BOTH_FENCE", "THREAD_1_FENCE_ACQ", "THREAD_1_FENCE_REL"]:
+    fences["t1_fence"] = f"Fence.{f_scope}_acqrel;"
+  
+  ## T2 fence
+  if variant in ["BOTH_FENCE", "THREAD_2_FENCE_ACQ", "THREAD_2_FENCE_REL"]:
+    fences["t2_fence"] = f"Fence.{f_scope}_acqrel;"
+
+  return fences
+
+def make_wwc_test(full_name, scope, f_scope, variant):
+  mem_orders = wwc_mem_orders(scope, variant)
+  fences = wwc_fences(f_scope, variant)
+  return f"deflitmus wwc_TB_{full_name} := W.{scope}_rlx x=2 || R.{mem_orders["t1_load"]} x // 2; {fences["t1_fence"]} W.{mem_orders["t1_store"]} y=1 || R.{mem_orders["t2_load"]} y // 1; {fences["t2_fence"]} W.{mem_orders["t2_store"]} x=1"
+
+def wwc_tests(output):
+  tb_combos = make_combinations(three_threads)
+  variants = ["RELAXED", "ACQ_REL", "ACQ_ACQ", "REL_ACQ", "REL_REL"]
+  fence_variants = ["BOTH_FENCE", "THREAD_1_FENCE_ACQ", "THREAD_1_FENCE_REL", "THREAD_2_FENCE_ACQ", "THREAD_2_FENCE_REL"]
+  make_tests(output, tb_combos, variants, fence_variants, make_wwc_test)
+
+# -------------------------------------------------------------------------
 # Write Output 
 # -------------------------------------------------------------------------
 
@@ -265,6 +426,9 @@ namespace Litmus
   isa2_tests(output)
   paper_example(output)
   rwc_tests(output)
+  wrc_tests(output)
+  wrw_2w_tests(output)
+  wwc_tests(output)
 
   output.write("""def allTests : List Litmus.Test := litmusTests!
 
