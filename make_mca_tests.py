@@ -46,6 +46,36 @@ def lean_format(combo):
 def name_format(combo):
   return "_".join("".join(item[1:] for item in group) for group in combo)
 
+def make_tests(output, tb_combinations, variants, fence_variants, make_test):
+  for combo in tb_combinations:
+    formatted_tb_config = lean_format(combo)
+    name_format_combo = name_format(combo)
+    # Deal with one annoyance matching names across test generation formats
+    if name_format_combo == "0_13_2":
+      name_format_combo = "0_2_13"
+
+    for scope in scope_mappings.keys():
+      mapped_scope = scope_mappings[scope]
+
+      def write_test(formatted_test):
+        output.write(formatted_test)
+        output.write("\n")
+        output.write(f" {formatted_tb_config}")
+        output.write("\n\n")
+
+      # Variants without fences
+      for variant in variants:
+        full_name = f"{name_format_combo}_{scope}_NO_FENCE_{variant}"
+        write_test(make_test(full_name, mapped_scope, "", variant))
+     
+      # Variants with fences
+      for f_scope in scope_mappings.keys():
+        mapped_f_scope = scope_mappings[f_scope]
+        for variant in fence_variants:
+          full_name = f"{name_format_combo}_{scope}_FENCE_{f_scope}_{variant}"
+          write_test(make_test(full_name, mapped_scope, mapped_f_scope, variant))
+
+
 # --------------------------
 # End Utilities
 # --------------------------
@@ -79,43 +109,16 @@ def iriw_fences(f_scope, variant):
   
   return fences
 
+def make_iriw_test(full_name, scope, f_scope, variant):
+  mem_orders = iriw_mem_orders(scope, variant)
+  fences = iriw_fences(f_scope, variant)
+  return f"deflitmus iriw_TB_{full_name} := W.{scope}_rlx x=1 || R.{mem_orders["t1_load"]} x // 1; {fences["t1_fence"]} R.{scope}_rlx y // 0 || W.{scope}_rlx y=1 || R.{mem_orders["t3_load"]} y // 1; {fences["t3_fence"]} R.{scope}_rlx x // 0"
+        
 def iriw_tests(output):
   tb_combos = sort_combinations(make_combinations(four_threads))
   variants = ["ACQUIRE", "RELAXED"]
   fence_variants = ["THREAD_1_FENCE", "THREAD_3_FENCE", "BOTH_FENCE"]
-
-  for combo in tb_combos:
-    formatted_tb_config = lean_format(combo)
-    name_format_combo = name_format(combo)
-    # Deal with one annoyance matching names across test generation formats
-    if name_format_combo == "0_13_2":
-      name_format_combo = "0_2_13"
-
-    for scope in scope_mappings.keys():
-
-      mapped_scope = scope_mappings[scope]
-
-      def make_iriw_test(full_name, f_scope, variant):
-        mem_orders = iriw_mem_orders(mapped_scope, variant)
-        fences = iriw_fences(f_scope, variant)
-        formatted_test = f"deflitmus iriw_TB_{full_name} := W.{mapped_scope}_rlx x=1 || R.{mem_orders["t1_load"]} x // 1; {fences["t1_fence"]} R.{mapped_scope}_rlx y // 0 || W.{mapped_scope}_rlx y=1 || R.{mem_orders["t3_load"]} y // 1; {fences["t3_fence"]} R.{mapped_scope}_rlx x // 0"
-        
-        output.write(formatted_test)
-        output.write("\n")
-        output.write(f" {formatted_tb_config}")
-        output.write("\n\n")
-
-      # Variants without fences
-      for variant in variants:
-        full_name = f"{name_format_combo}_{scope}_NO_FENCE_{variant}"
-        make_iriw_test(full_name, "", variant)
-      
-      # Variants with fences
-      for f_scope in scope_mappings.keys():
-        mapped_f_scope = scope_mappings[f_scope]
-        for variant in fence_variants:
-          full_name = f"{name_format_combo}_{scope}_FENCE_{f_scope}_{variant}"
-          make_iriw_test(full_name, mapped_f_scope, variant)
+  make_tests(output, tb_combos, variants, fence_variants, make_iriw_test)
 
 # -------------------------------------------------------------------------
 # ISA2
@@ -168,42 +171,82 @@ def isa2_fences(f_scope, variant):
 
   return fences
 
+def make_isa2_test(full_name, scope, f_scope, variant):
+  mem_orders = isa2_mem_orders(scope, variant)
+  fences = isa2_fences(f_scope, variant)
+  return f"deflitmus isa2_TB_{full_name} := W.{scope}_rlx x=1; {fences["t0_fence"]} W.{mem_orders["t0_store"]} y=1 || R.{mem_orders["t1_load"]} y // 1; {fences["t1_fence"]} W.{mem_orders["t1_store"]} z=1 || R.{mem_orders["t2_load"]} z // 1; {fences["t2_fence"]} R.{scope}_rlx x // 0"
+
 def isa2_tests(output):
   tb_combos = make_combinations(three_threads)
   variants = ["RELAXED", "ACQUIRE", "RELEASE"]
   fence_variants = ["ALL_FENCE", "THREAD_0_FENCE_ACQ", "THREAD_0_FENCE_REL", "THREAD_1_FENCE", "THREAD_2_FENCE_ACQ", "THREAD_2_FENCE_REL", "THREAD_0_1_FENCE", "THREAD_0_2_FENCE_ACQ", "THREAD_0_2_FENCE_REL", "THREAD_1_2_FENCE"]
+  make_tests(output, tb_combos, variants, fence_variants, make_isa2_test)
 
-  for combo in tb_combos:
-    formatted_tb_config = lean_format(combo)
-    name_format_combo = name_format(combo)
+# -------------------------------------------------------------------------
+# Paper Example
+# -------------------------------------------------------------------------
 
-    for scope in scope_mappings.keys():
-      mapped_scope = scope_mappings[scope]
+def paper_example(output):
+  test = "deflitmus paper_example_DEFAULT_DEFAULT_NO_FENCE_DEFAULT := Fence.gpu_sc; W.gpu_rel x=1; W.gpu_rel z=1 || R.gpu_acq z // 1; W.gpu_rel y=1; Fence.gpu_sc; R.gpu_rlx y // 2 || Fence.gpu_sc; W.gpu_rel y=2; W.gpu_rel a=1 || R.gpu_acq a // 1; R.gpu_acq x // 0; Fence.gpu_sc"
+  config = " where sys := {{T0}, {T1}, {T2}, {T3}}"
+  output.write(test)
+  output.write("\n")
+  output.write(config)
+  output.write("\n\n")
 
-      def make_isa2_test(full_name, f_scope, variant):
-        mem_orders = isa2_mem_orders(mapped_scope, variant)
-        fences = isa2_fences(f_scope, variant)
+# -------------------------------------------------------------------------
+# RWC
+# -------------------------------------------------------------------------
 
-        formatted_test = f"deflitmus isa2_TB_{full_name} := W.{mapped_scope}_rlx x=1; {fences["t0_fence"]} W.{mem_orders["t0_store"]} y=1 || R.{mem_orders["t1_load"]} y // 1; {fences["t1_fence"]} W.{mem_orders["t1_store"]} z=1 || R.{mem_orders["t2_load"]} z // 1; {fences["t2_fence"]} R.{mapped_scope}_rlx x // 0"
+def rwc_mem_orders(scope, variant):
+  mem_orders = {
+    "t1_load": f"{scope}_rlx",
+    "t2_store": f"{scope}_rlx",
+    "t2_load": f"{scope}_rlx"
+  }
 
-        output.write(formatted_test)
-        output.write("\n")
-        output.write(f" {formatted_tb_config}")
-        output.write("\n\n")
+  ## T1 load
+  if variant in ["STORE_SC", "LOAD_SC", "THREAD_2_FENCE"]:
+    mem_orders["t1_load"] = f"{scope}_acq"
 
-      # Variants without fences
-      for variant in variants:
-        full_name = f"{name_format_combo}_{scope}_NO_FENCE_{variant}"
-        make_isa2_test(full_name, "", variant)
- 
-      # Variants with fences
-      for f_scope in scope_mappings.keys():
-        mapped_f_scope = scope_mappings[f_scope]
-        for variant in fence_variants:
-          full_name = f"{name_format_combo}_{scope}_FENCE_{f_scope}_{variant}"
-          make_isa2_test(full_name, mapped_f_scope, variant)
+  ## T2 store
+  if variant in ["STORE_SC", "THREAD_1_FENCE_STORE_SC"]:
+    mem_orders["t2_store"] = f"{scope}_sc"
+  
+  ## T2 load
+  if variant in ["LOAD_SC", "THREAD_1_FENCE_LOAD_SC"]:
+    mem_orders["t2_load"] = f"{scope}_sc"
+  
+  return mem_orders
+
+def rwc_fences(f_scope, variant):
+  fences = {
+    "t1_fence": "",
+    "t2_fence": ""
+  }
+
+  ## T1 fence
+  if variant in ["BOTH_FENCE", "THREAD_1_FENCE_STORE_SC", "THREAD_1_FENCE_LOAD_SC"]:
+    fences["t1_fence"] = f"Fence.{f_scope}_acqrel;"
+  
+  ## T2 fence
+  if variant in ["BOTH_FENCE", "THREAD_2_FENCE"]:
+    fences["t2_fence"] = f"Fence.{f_scope}_sc;"
+
+  return fences
 
 
+def make_rwc_test(full_name, scope, f_scope, variant):
+  mem_orders = rwc_mem_orders(scope, variant)
+  fences = rwc_fences(f_scope, variant)
+  return f"deflitmus rwc_TB_{full_name} := W.{scope}_rlx x=1 || R.{mem_orders["t1_load"]} x // 1; {fences["t1_fence"]} R.{scope}_rlx y // 1 || W.{mem_orders["t2_store"]} y=1; {fences["t2_fence"]} R.{mem_orders["t2_load"]} x // 0"
+
+
+def rwc_tests(output):
+  tb_combos = make_combinations(three_threads)
+  variants = ["RELAXED", "STORE_SC", "LOAD_SC"]
+  fence_variants = ["BOTH_FENCE", "THREAD_1_FENCE_STORE_SC", "THREAD_1_FENCE_LOAD_SC", "THREAD_2_FENCE"]
+  make_tests(output, tb_combos, variants, fence_variants, make_rwc_test)
 
 # -------------------------------------------------------------------------
 # Write Output 
@@ -220,6 +263,8 @@ namespace Litmus
 
   iriw_tests(output)
   isa2_tests(output)
+  paper_example(output)
+  rwc_tests(output)
 
   output.write("""def allTests : List Litmus.Test := litmusTests!
 
