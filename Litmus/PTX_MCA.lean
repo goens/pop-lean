@@ -4325,1579 +4325,1579 @@ deflitmus wrc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_r
 deflitmus wrc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=1 || R.cta_rlx x // 1;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; R.cta_rlx x // 0
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_NO_FENCE_ACQUIRE := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_NO_FENCE_RELEASE := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || W.sys_rlx y=2;  W.sys_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.sys_rlx y=2; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_NO_FENCE_ACQUIRE := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_NO_FENCE_RELEASE := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || W.gpu_rlx y=2;  W.gpu_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.gpu_rlx y=2; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_NO_FENCE_ACQUIRE := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_NO_FENCE_RELEASE := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || W.cta_rlx y=2;  W.cta_rel x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wrw_2w_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.cta_rlx y=2; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_1_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_01_2_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1}, {T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_1_02_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T1}, {T0, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_0_12_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0}, {T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_RELAXED := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_ACQ_REL := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_ACQ_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_REL_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_NO_FENCE_REL_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.sys_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.sys_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.gpu_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.gpu_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_acq y // 1;  W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2; Fence.cta_acqrel; W.sys_rlx y=1 || R.sys_rlx y // 1;  W.sys_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.sys_rlx x=2 || R.sys_acq x // 2;  W.sys_rlx y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1
+deflitmus wwc_TB_012_SCOPE_SYSTEM_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.sys_rlx x=2 || R.sys_rlx x // 2;  W.sys_rel y=1 || R.sys_rlx y // 1; Fence.cta_acqrel; W.sys_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_RELAXED := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_ACQ_REL := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_ACQ_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_REL_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_NO_FENCE_REL_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.sys_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.sys_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.gpu_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.gpu_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_acq y // 1;  W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2; Fence.cta_acqrel; W.gpu_rlx y=1 || R.gpu_rlx y // 1;  W.gpu_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.gpu_rlx x=2 || R.gpu_acq x // 2;  W.gpu_rlx y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1
+deflitmus wwc_TB_012_SCOPE_DEVICE_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.gpu_rlx x=2 || R.gpu_rlx x // 2;  W.gpu_rel y=1 || R.gpu_rlx y // 1; Fence.cta_acqrel; W.gpu_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_RELAXED := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_ACQ_REL := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_ACQ_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_REL_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_NO_FENCE_REL_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.sys_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_SYSTEM_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.sys_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.gpu_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_DEVICE_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.gpu_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_BOTH_FENCE := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_ACQ := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_acq y // 1;  W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_1_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2; Fence.cta_acqrel; W.cta_rlx y=1 || R.cta_rlx y // 1;  W.cta_rel x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_ACQ := W.cta_rlx x=2 || R.cta_acq x // 2;  W.cta_rlx y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
-deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1
+deflitmus wwc_TB_012_SCOPE_BLOCK_FENCE_SCOPE_BLOCK_THREAD_2_FENCE_REL := W.cta_rlx x=2 || R.cta_rlx x // 2;  W.cta_rel y=1 || R.cta_rlx y // 1; Fence.cta_acqrel; W.cta_rlx x=1; Fence.sys_sc; R.sys_rlx x // 2
  where sys := {{T0, T1, T2}}
 
 def allTests : List Litmus.Test := litmusTests!

@@ -344,7 +344,7 @@ def wrw_2w_fences(f_scope, variant):
 def make_wrw_2w_test(full_name, scope, f_scope, variant):
   mem_orders = wrw_2w_mem_orders(scope, variant)
   fences = wrw_2w_fences(f_scope, variant)
-  return f"deflitmus wrw_2w_TB_{full_name} := W.{scope}_rlx x=2 || R.{mem_orders["t1_load"]} x // 2; {fences["t1_fence"]} W.{mem_orders["t1_store"]} y=1 || W.{scope}_rlx y=2; {fences["t2_fence"]} W.{mem_orders["t2_store"]} x=1"
+  return f"deflitmus wrw_2w_TB_{full_name} := W.{scope}_rlx x=2 || R.{mem_orders["t1_load"]} x // 2; {fences["t1_fence"]} W.{mem_orders["t1_store"]} y=1; Fence.sys_sc; R.sys_rlx y // 2 || W.{scope}_rlx y=2; {fences["t2_fence"]} W.{mem_orders["t2_store"]} x=1; Fence.sys_sc; R.sys_rlx x // 2"
 
 def wrw_2w_tests(output):
   tb_combos = make_combinations(three_threads)
@@ -401,7 +401,7 @@ def wwc_fences(f_scope, variant):
 def make_wwc_test(full_name, scope, f_scope, variant):
   mem_orders = wwc_mem_orders(scope, variant)
   fences = wwc_fences(f_scope, variant)
-  return f"deflitmus wwc_TB_{full_name} := W.{scope}_rlx x=2 || R.{mem_orders["t1_load"]} x // 2; {fences["t1_fence"]} W.{mem_orders["t1_store"]} y=1 || R.{mem_orders["t2_load"]} y // 1; {fences["t2_fence"]} W.{mem_orders["t2_store"]} x=1"
+  return f"deflitmus wwc_TB_{full_name} := W.{scope}_rlx x=2 || R.{mem_orders["t1_load"]} x // 2; {fences["t1_fence"]} W.{mem_orders["t1_store"]} y=1 || R.{mem_orders["t2_load"]} y // 1; {fences["t2_fence"]} W.{mem_orders["t2_store"]} x=1; Fence.sys_sc; R.sys_rlx x // 2"
 
 def wwc_tests(output):
   tb_combos = make_combinations(three_threads)
