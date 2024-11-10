@@ -107,7 +107,8 @@ def toAlloy : String → BasicRequest → String
         | .rel => moduleName ++ s!"/{pref}FenceRel"
         | .acq => moduleName ++ s!"/{pref}FenceAcq"
         | _ => moduleName ++ s!"/UnknownFence"
-def alloyName := "ptx_mca"
+def alloyName := "ptx"
+def alloyPred := "ptx_mca_mm"
 
 def getThreadScope (valid : ValidScopes) (thread : ThreadId) (scope : Scope) :=
   let containing := valid.containThread thread
@@ -338,6 +339,7 @@ instance : LitmusSyntax where
   mkRMW := mkRMW
   mkFence := mkFence
   alloyName := alloyName
+  alloyPred := alloyPred
   toAlloy := toAlloy
 
 end Litmus

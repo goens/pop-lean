@@ -147,7 +147,7 @@ def toPreds (litmus : Litmus.Test) : String :=
   s!"    // Addresses \n{addresses}\n" ++
   s!"    // Scopes \n{scopes}\n" ++
   s!"    // Outcome \n{outcome}\n" ++
-  s!"  {LitmusSyntax.alloyName}_mm\n\n"
+  s!"  {LitmusSyntax.alloyPred}\n\n"
 
 
 def toAlloyLitmus (litmus : Litmus.Test ) : String :=
